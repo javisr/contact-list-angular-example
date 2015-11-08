@@ -1,0 +1,12 @@
+{
+  "extends": "../.jshintrc",
+
+  // Environments
+  "node": false, // Node.js
+
+  // Custom Globals
+  "globals": {
+    "angular": true
+  } // additional predefined global variables
+}
+

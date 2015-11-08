@@ -1,0 +1,15 @@
+*.orig
+check-style/
+node_modules/
+bower_components/
+dist/
+tmp/
+src/assets/sass/maps/
+staticResources*
+jshint-report.html
+*~
+*.sublime-workspace
+*.sublime-project
+src/assets/css/
+src/lib/
+src/scripts/
