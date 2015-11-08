@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h4 class="modal-title"> Contact Information</h4></div>
+<div class="modal-body">
+  <div class="row">
+    <ng-form name="contactForm" novalidate>
+      <fieldset>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.name.$dirty && contactForm.name.$invalid]">
+          <label class="col-md-2 control-label" for="course">Name:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="name" ng-model="info.name" ng-required>
+            <span class="help-block">Enter your name. (Required)</span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.lastName.$dirty && contactForm.lastName.$invalid]">
+          <label class="col-md-2 control-label" for="course">Last Name:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="lastName" ng-model="info.lastName" ng-required>
+            <span class="help-block">Enter your last name. (Required)</span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.email.$dirty && contactForm.email.$invalid]">
+          <label class="col-md-2 control-label" for="course">Email:</label>
+          <div class="col-md-10">
+            <input type="email" class="form-control" name="email" ng-model="info.email" ng-required>
+            <span class="help-block">Enter your email. (Required)</span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.address.$dirty && contactForm.address.$invalid]">
+          <label class="col-md-2 control-label" for="course">Address:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="address" ng-model="info.address">
+            <span class="help-block">Enter your address. </span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.city.$dirty && contactForm.city.$invalid]">
+          <label class="col-md-2 control-label" for="course">City:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="city" ng-model="info.city">
+            <span class="help-block">Enter your city.</span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.zipCode.$dirty && contactForm.zipCode.$invalid]">
+          <label class="col-md-2 control-label" for="course">ZIP Code:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="zipCode" ng-model="info.zipCode" ng-pattern="/^\d{5}$/">
+            <span class="help-block">Enter your last zip code.</span>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error'}[contactForm.country.$dirty && contactForm.country.$invalid]">
+          <label class="col-md-2 control-label" for="course">Country:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="country" ng-model="info.country">
+            <span class="help-block">Enter your last country.</span>
+          </div>
+        </div>
+      </fieldset>
+    </ng-form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+  <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(contactForm.$dirty && contactForm.$invalid) || contactForm.$pristine">Save</button>
+</div>

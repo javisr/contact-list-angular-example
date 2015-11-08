@@ -99,7 +99,10 @@ gulp.task('inject', function() {
 gulp.task('wiredep', function() {
   gulp.src(paths.indexFile)
     .pipe(wiredep({
-      directory: './src/lib'
+      directory: './src/lib',
+      exclude: ['lib/jquery/dist/jquery.js', 'lib/bootstrap-sass/assets/javascripts/bootstrap.js',
+        'lib/bootstrap/dist/js/bootstrap.js'
+      ]
     }))
     .pipe(gulp.dest(src));
 });

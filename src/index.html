@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- build:css css/style.min.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="lib/angular-dialog-service/dist/dialogs.min.css" />
   <!-- endbower -->
   <!-- inject:css -->
   <link rel="stylesheet" href="tmp/css/main.css">
@@ -18,16 +18,9 @@
 </head>
 
 <body ng-app="app">
-  <nav class="navbar navbar-inverse " role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">ContactList</a>
-      </div>
-      <!--/.navbar-collapse -->
-    </div>
-  </nav>
+  <div ui-view name="nav"></div>
   <div class="container">
-    <div ui-view></div>
+    <div ui-view name="content"></div>
     <hr>
     <footer>
       <p>&copy; Javisr.net</p>
@@ -37,16 +30,25 @@
   <!-- build:js js/vendor.min.js -->
   <!-- bower:js -->
   <script src="lib/angular/angular.js"></script>
+  <script src="lib/ng-lodash/build/ng-lodash.js"></script>
   <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="lib/angular-translate/angular-translate.js"></script>
+  <script src="lib/angular-dialog-service/dist/dialogs.min.js"></script>
+  <script src="lib/angular-dialog-service/dist/dialogs-default-translations.min.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:js js/app.min.js -->
   <!-- inject:js -->
   <script src="/app/app.js"></script>
   <script src="/tmp/scripts/templates.js"></script>
-  <script src="/app/shared/services/services.module.js"></script>
   <script src="/app/shared/filters/filters.module.js"></script>
   <script src="/app/shared/filters/capitalize.js"></script>
+  <script src="/app/shared/services/services.module.js"></script>
+  <script src="/app/components/nav/homeNav.controller.js"></script>
+  <script src="/app/components/form/form.controller.js"></script>
   <script src="/app/components/home/home.controller.js"></script>
   <!-- endinject -->
   <!-- endbuild -->
