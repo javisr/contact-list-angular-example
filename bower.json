@@ -18,6 +18,7 @@
     "font-awesome": "^4.4.0",
     "angular-ui-router": "^0.2.15",
     "angular-dialog-service": "~5.2.8",
-    "angular-animate": "~1.4.7"
+    "angular-animate": "~1.4.7",
+    "angular-local-storage": "~0.2.3"
   }
 }

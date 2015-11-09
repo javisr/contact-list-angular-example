@@ -1,0 +1,18 @@
+<div class="col-md-6 col-sm-6 contact-card">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="btn-group pull-right buttons">
+        <a href="#" class="btn btn-warning btn-xs" ng-click="delete()(index)">Delete</a>
+        <a href="#" class="btn btn-default btn-xs" ng-click="edit()(info,index)">Edit</a>
+      </div>
+      <h4>{{info.name}} {{info.lastName}}</h4>
+    </div>
+    <div class="panel-body">
+      <h6>Email: {{info.email}}</h6>
+      <span ng-if="info.address">{{info.address}}, </span>
+      <span ng-if="info.zipCode">{{info.zipCode}}, </span>
+      <span ng-if="info.city">{{info.city}}, </span>
+      <span ng-if="info.country">{{info.country}} </span>
+    </div>
+  </div>
+</div>
