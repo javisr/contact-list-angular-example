@@ -4,16 +4,41 @@
     .controller('homeCtrl', ['$scope', 'dialogs', '$log', '$rootScope', 'localStorageService', 'lodash',
 
       function($scope, dialogs, $log, $rootScope, localStorageService, lodash) {
+        var transformingFn;
         $rootScope.$on('addNewContact', function() {
           $scope.showForm();
         });
 
-        var storedContact = localStorageService.get('contacts');
+        $scope.storedContact = localStorageService.get('contacts') || [];
 
-        $scope.visibleCards = storedContact || [];
+        transformingFn = function(contact) {
+          var formatted, addressComponents = [];
 
-        $scope.$watch('visibleCards', function() {
-          localStorageService.set('contacts', $scope.visibleCards);
+          if (contact.address !== '') {
+            addressComponents.push(contact.address);
+          }
+          if (contact.city !== '') {
+            addressComponents.push(contact.city);
+          }
+          if (contact.zipCode !== '') {
+            addressComponents.push(contact.zipCode);
+          }
+          if (contact.country !== '') {
+            addressComponents.push(contact.country);
+          }
+
+          formatted = {
+            name: contact.name + ' ' + contact.lastName,
+            email: contact.email,
+            address: addressComponents.length ? addressComponents.join(', ') + '.' : ''
+          };
+
+          return formatted;
+        };
+
+        $scope.$watch('storedContact', function() {
+          localStorageService.set('contacts', $scope.storedContact);
+          $scope.visibleCards = lodash.map($scope.storedContact, transformingFn);
         }, true);
 
         $scope.showForm = function(contact, index) {
@@ -21,24 +46,27 @@
           var dlg = dialogs.create('app/components/form/form.tpl.html', 'formCtrl', contact);
           dlg.result.then(function(newInfo) {
             if (newInfo.id && lodash.isNumber(index)) {
-              $scope.visibleCards.splice(index, 1, newInfo);
+              $scope.storedContact.splice(index, 1, newInfo);
             } else {
               newInfo.id = new Date().getTime();
-              $scope.visibleCards.push(newInfo);
+              $scope.storedContact.push(newInfo);
             }
           }, function(message) {
             $log.info(message);
           });
         };
 
-        $scope.editContact = function(contact, index) {
+        $scope.editContact = function(index) {
+          var contact = $scope.storedContact[index];
           $scope.showForm(contact, index);
         };
         $scope.deleteContact = function(index) {
-          var dlg = dialogs.create('app/components/confirmationForm/confirmationForm.tpl.html', 'confirmFormCtrl',
-            'xs');
+          var dlg = dialogs.create('app/components/confirmationForm/confirmationForm.tpl.html', 'confirmFormCtrl', {}, {
+            'size': 'md'
+          });
+
           dlg.result.then(function() {
-            $scope.visibleCards.splice(index, 1);
+            $scope.storedContact.splice(index, 1);
           }, function() {
             $log.info('Delete canceled');
           });

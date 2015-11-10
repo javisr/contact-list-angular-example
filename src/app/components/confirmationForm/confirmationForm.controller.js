@@ -5,7 +5,7 @@
       '$scope', '$modalInstance',
       function($scope, $modalInstance) {
         $scope.cancel = function() {
-          $modalInstance.dismiss(' canceled');
+          $modalInstance.dismiss('canceled');
         };
         $scope.continue = function() {
           $modalInstance.close();

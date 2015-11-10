@@ -24,6 +24,17 @@
         $scope.save = function() {
           $modalInstance.close($scope.info);
         };
+
+        $scope.disableForm = function() {
+          var setted = false;
+          angular.forEach($scope.info, function(value) {
+            if (!setted && value !== '') {
+              setted = true;
+            }
+          });
+
+          return ($scope.contactForm.$dirty && $scope.contactForm.$invalid) || $scope.contactForm.$pristine;
+        };
       }
     ]);
 })();
